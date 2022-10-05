@@ -1,0 +1,5 @@
+scripts/images
+scripts/images/*
+__pycache__
+camera.jpg
+detect_eyes_camera.jpg

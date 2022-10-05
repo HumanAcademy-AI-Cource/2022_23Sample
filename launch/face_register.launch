@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node name="face_detection_node" pkg="opencv_apps" type="face_detection">
+        <remap from="image" to="/usb_cam/image_raw" />
+        <param name="use_camera_info" value="false" />
+        <param name="debug_view" value="false" />
+        <param name="queue_size" value="3" />
+        <param name="face_cascade_name" value="/usr/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml" />
+        <param name="eyes_cascade_name" value="/usr/share/opencv4/haarcascades/haarcascade_eye_tree_eyeglasses.xml" />
+    </node>
+
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node">
+       <param name="video_device" value="/dev/video0"/>
+       <param name="image_width" value="320"/>
+       <param name="image_height" value="240"/>
+       <param name="pixel_format" value="yuyv"/>
+       <param name="framerate" value="30"/>
+    </node>
+
+<node name="face_register_node" pkg="myface_recognition" type="face_register_node.py" required="true" output="screen" />
+</launch>
